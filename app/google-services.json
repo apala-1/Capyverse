@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "765100114835",
+    "firebase_url": "https://capyverse-c822f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "capyverse-c822f",
+    "storage_bucket": "capyverse-c822f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765100114835:android:75fe82ea46a779751a5e66",
+        "android_client_info": {
+          "package_name": "com.example.capyverse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACwC6rh9Q2eEtlCzryfssdqFScSetPBZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
