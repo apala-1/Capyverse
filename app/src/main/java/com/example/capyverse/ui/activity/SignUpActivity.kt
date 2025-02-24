@@ -15,9 +15,10 @@ import com.example.capyverse.utils.LoadingUtils
 import com.example.capyverse.viewmodel.UserViewModel
 
 class SignUpActivity : AppCompatActivity() {
-    lateinit var binding: ActivitySignUpBinding
-    lateinit var userViewModel: UserViewModel
-    lateinit var loadingUtils: LoadingUtils
+    private lateinit var binding: ActivitySignUpBinding
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var loadingUtils: LoadingUtils
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,45 +27,9 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadingUtils = LoadingUtils(this)
+        userViewModel = UserViewModel(UserRepositoryImpl())
 
-        val userRepository = UserRepositoryImpl()
-
-        userViewModel = UserViewModel(userRepository)
-
-        binding.alreadyHaveAccount.setOnClickListener {
-            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.backBtn.setOnClickListener{
-            val intent = Intent(
-                this@SignUpActivity,
-                HomePageActivity::class.java
-            )
-            startActivity(intent)
-        }
-
-        binding.signUpButton.setOnClickListener {
-            loadingUtils.show()
-            var email: String = binding.email.text.toString()
-            var password: String = binding.password.text.toString()
-            var firstName: String = binding.firstName.text.toString()
-            var lastName: String = binding.lastName.text.toString()
-            userViewModel.signup(email,password){
-                success,message,userId ->
-                if(success){
-                    var userModel = UserModel(
-                        userId, email, firstName, lastName
-                    )
-                    addUser(userModel)
-                }else{
-                    loadingUtils.dismiss()
-                    Toast.makeText(this@SignUpActivity,
-                        message, Toast.LENGTH_SHORT).show()
-                }
-            }
-
-        }
+        setupClickListeners()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -73,17 +38,69 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    fun addUser(userModel: UserModel){
-        userViewModel.addUserToDatabase(userModel.userId,userModel){
-            success, message ->
-            if(success){
-                loadingUtils.dismiss()
-                Toast.makeText(this@SignUpActivity,
-                    message,Toast.LENGTH_SHORT).show()
-            }else{
-                loadingUtils.dismiss()
-                Toast.makeText(this@SignUpActivity,
-                    message,Toast.LENGTH_SHORT).show()
+    private fun setupClickListeners() {
+        binding.alreadyHaveAccount.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
+        binding.backBtn.setOnClickListener {
+            startActivity(Intent(this, HomePageActivity::class.java))
+            finish()
+        }
+
+        binding.signUpButton.setOnClickListener {
+            handleSignUp()
+        }
+    }
+
+    private fun handleSignUp() {
+        val email = binding.email.text.toString().trim()
+        val password = binding.password.text.toString().trim()
+        val firstName = binding.firstName.text.toString().trim()
+        val lastName = binding.lastName.text.toString().trim()
+
+        if (email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (!isValidEmail(email)) {
+            Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (password.length < 6) {
+            Toast.makeText(this, "Password must be at least 6 characters long.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        loadingUtils.show()
+
+        userViewModel.signup(email, password) { success, message, userId ->
+            loadingUtils.dismiss()
+            if (success && userId != null) {
+                val userModel = UserModel(userId, email, firstName, lastName)
+                addUser(userModel)
+            } else {
+                Toast.makeText(this, message ?: "Sign-up failed. Please try again.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        val emailRegex = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+        return email.matches(emailRegex.toRegex())
+    }
+
+
+    private fun addUser(userModel: UserModel) {
+        userViewModel.addUserToDatabase(userModel.userId, userModel) { success, message ->
+            loadingUtils.dismiss()
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            if (success) {
+                startActivity(Intent(this, HomePageActivity::class.java))
+                finish()
             }
         }
     }
