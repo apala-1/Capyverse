@@ -54,7 +54,7 @@
                     android:fontFamily="@font/inter"
                     android:textSize="30sp"
                     android:padding="2dp"
-                    android:text="Flashcards"
+                    android:text="Tasks"
                     android:textColor="@color/white"/>
             </LinearLayout>
 
@@ -88,7 +88,7 @@
                     android:textSize="30sp"
                     android:textColor="@color/white"
                     android:padding="2dp"
-                    android:text="Quizzes" />
+                    android:text="Notes" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

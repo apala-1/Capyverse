@@ -51,11 +51,24 @@
         app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/editProfBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginBottom="350dp"
+        android:background="@drawable/button_background"
+        android:text="Edit Profile"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logOutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginBottom="230dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginBottom="350dp"
         android:background="@drawable/button_background"
         android:text="Log Out"
         android:textColor="@color/white"
