@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.capyverse.databinding.FragmentHomeBinding
+import com.example.capyverse.ui.activity.NotesActivity
 import com.example.capyverse.ui.activity.TaskActivity
 
 class HomeFragment : Fragment() {
@@ -21,6 +22,11 @@ class HomeFragment : Fragment() {
         // Navigate to FlashcardsActivity when fragmentContainer is clicked
         binding.flashcardContainer.setOnClickListener {
             val intent = Intent(requireContext(), TaskActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.quizzesContainer.setOnClickListener {
+            val intent = Intent(requireContext(), NotesActivity::class.java)
             startActivity(intent)
         }
 

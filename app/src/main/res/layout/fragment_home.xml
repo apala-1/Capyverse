@@ -46,6 +46,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/quizzesContainer"
             android:layout_width="184dp"
             android:layout_height="194dp"
             android:layout_marginStart="211dp"
