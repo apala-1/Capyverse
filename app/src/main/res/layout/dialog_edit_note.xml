@@ -1,25 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/nude">
 
+    <!-- Note Title EditText -->
     <EditText
         android:id="@+id/editNoteTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="Note Title"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/edit_text_background"
+        android:textColor="@android:color/black"
+        android:padding="10dp"
+        android:textSize="16sp"/>
 
+    <!-- Note Content EditText -->
     <EditText
         android:id="@+id/editNoteContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Note Content"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/edit_text_background"
+        android:textColor="@android:color/black"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:minHeight="100dp"
+        android:layout_marginTop="16dp"/>
+
 </LinearLayout>

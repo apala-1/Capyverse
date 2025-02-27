@@ -19,7 +19,7 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        // Navigate to FlashcardsActivity when fragmentContainer is clicked
+
         binding.flashcardContainer.setOnClickListener {
             val intent = Intent(requireContext(), TaskActivity::class.java)
             startActivity(intent)

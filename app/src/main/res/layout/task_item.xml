@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:background="@color/nude">
+    android:padding="16dp"
+    android:background="@color/nude"
+    android:layout_marginBottom="16dp">
 
+    <!-- Task Title -->
     <TextView
         android:id="@+id/taskTitle"
         android:layout_width="wrap_content"
@@ -15,6 +15,7 @@
         android:textStyle="bold"
         android:textColor="@color/darkbrown"/>
 
+    <!-- Task Description -->
     <TextView
         android:id="@+id/taskDescription"
         android:layout_width="wrap_content"
@@ -22,6 +23,7 @@
         android:textSize="16sp"
         android:textColor="@color/darkbrown"/>
 
+    <!-- Due Date -->
     <TextView
         android:id="@+id/dueDate"
         android:layout_width="wrap_content"
@@ -29,19 +31,27 @@
         android:textSize="14sp"
         android:textColor="@color/darkbrown"/>
 
-    <Button
+    <!-- Edit Task Button -->
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/editTaskButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:text="Edit"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
 
-    <Button
+    <!-- Delete Task Button -->
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/deleteTaskButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:text="Delete"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
 </LinearLayout>

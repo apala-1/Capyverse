@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -7,33 +6,57 @@
     android:background="@color/nude"
     android:padding="16dp">
 
+    <!-- Header Text -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notes"
+        android:textSize="24sp"
+        android:textColor="@color/darkbrown"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"/>
+
+    <!-- Title EditText -->
     <EditText
         android:id="@+id/noteTitle"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
         android:hint="Note Title"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/edit_text_background"
+        android:textColor="@android:color/black"
+        android:padding="10dp"
+        android:textSize="16sp"/>
 
+    <!-- Content EditText -->
     <EditText
         android:id="@+id/noteContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="100dp"
         android:hint="Note Content"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/edit_text_background"
+        android:textColor="@android:color/black"
+        android:padding="10dp"
+        android:textSize="16sp"/>
 
-    <Button
+    <!-- Add Note Button -->
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addNoteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:text="Add Note"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"/>
 
+    <!-- RecyclerView to display notes -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/noteRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
 </LinearLayout>

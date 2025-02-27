@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,41 +6,68 @@
     android:background="@color/nude"
     android:padding="16dp">
 
+    <!-- Header Text -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task Management"
+        android:textSize="24sp"
+        android:textColor="@color/darkbrown"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"/>
+
+    <!-- Task Title EditText -->
     <EditText
         android:id="@+id/taskTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="Task Title"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/edit_text_background"
+        android:textColor="@android:color/black"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp"/>
 
+    <!-- Task Description EditText -->
     <EditText
         android:id="@+id/taskDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Task Description"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/edit_text_background"
+        android:textColor="@android:color/black"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp"/>
 
+    <!-- Due Date EditText -->
     <EditText
         android:id="@+id/dueDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Due Date (yyyy-mm-dd)"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/edit_text_background"
+        android:textColor="@android:color/black"
+        android:padding="10dp"
+        android:textSize="16sp"/>
 
+    <!-- Add Task Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addTaskButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:text="Add Task"
-        android:background="@color/darkbrown"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"/>
 
+    <!-- RecyclerView to display tasks -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskRecyclerView"
         tools:listitem="@layout/task_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
 </LinearLayout>
