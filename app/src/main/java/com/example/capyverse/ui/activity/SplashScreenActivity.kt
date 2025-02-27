@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.capyverse.R
+import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
@@ -17,11 +18,19 @@ class SplashScreenActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_splash_screen)
 
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = firebaseAuth.currentUser
+
         android.os.Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashScreenActivity,
-                SignUpActivity::class.java)
-            startActivity(intent)
+            val targetActivity = if (currentUser != null) {
+                IndexPageActivity::class.java
+            } else {
+                HomePageActivity::class.java
+            }
+            startActivity(Intent(this, targetActivity))
+            finish()
         }, 3000)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

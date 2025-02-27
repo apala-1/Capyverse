@@ -1,13 +1,16 @@
 package com.example.capyverse.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.capyverse.R
 import com.example.capyverse.databinding.FragmentProfileBinding
 import com.example.capyverse.repository.UserRepositoryImpl
+import com.example.capyverse.ui.activity.LoginActivity
 import com.example.capyverse.viewmodel.UserViewModel
 
 class ProfileFragment : Fragment() {
@@ -37,6 +40,20 @@ class ProfileFragment : Fragment() {
             binding.email.text = users?.email
             binding.fullName.text = users?.firstName+" "+users?.lastName
         }
+
+        binding.logOutBtn.setOnClickListener {
+            userViewModel.logout { success, message ->
+                if (success) {
+                    Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(requireContext(), LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(requireContext(), "Error: $message", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
 
     }
 

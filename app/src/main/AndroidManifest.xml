@@ -13,7 +13,7 @@
         android:theme="@style/Theme.CapyVerse"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.FlashcardsActivity"
+            android:name=".ui.activity.TaskActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

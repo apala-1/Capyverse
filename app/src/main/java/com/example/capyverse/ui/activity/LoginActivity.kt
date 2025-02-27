@@ -9,14 +9,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.capyverse.R
 import com.example.capyverse.databinding.ActivityLoginBinding
-import com.example.capyverse.ui.fragment.ProfileFragment
 import com.example.capyverse.utils.LoadingUtils
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var binding: ActivityLoginBinding
-    lateinit var  loadingUtils: LoadingUtils
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var loadingUtils: LoadingUtils
     private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,57 +30,49 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
 
-            if(email.isNotEmpty()&&password.isNotEmpty()){
-                if(android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     loadingUtils.show()
-                    firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener { task ->
-                        loadingUtils.dismiss()
-                        if (task.isSuccessful) {
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "Login Successful",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            navigateToIndex()
-                        } else {
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "Error: ${task.exception?.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                    firebaseAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            loadingUtils.dismiss()
+                            if (task.isSuccessful) {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "Login Successful",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                navigateToIndex()
+                            } else {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "Error: ${task.exception?.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
-                    }
-                }else{
+                } else {
                     Toast.makeText(
                         this@LoginActivity,
                         "Please enter a valid email address",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }else{
+            } else {
                 Toast.makeText(
                     this@LoginActivity,
                     "Please fill in all the fields",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-
         }
 
-        binding.backBtn.setOnClickListener{
-            val intent = Intent(
-                this@LoginActivity,
-                HomePageActivity::class.java
-            )
-            startActivity(intent)
+        binding.backBtn.setOnClickListener {
+            startActivity(Intent(this@LoginActivity, HomePageActivity::class.java))
         }
 
         binding.forgotPassBtn.setOnClickListener {
-            val intent = Intent(
-                this@LoginActivity,
-                ForgotPasswordActivity::class.java
-            )
-            startActivity(intent)
+            startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -89,8 +81,9 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
     }
-    private  fun navigateToIndex(){
-        val intent = Intent(this@LoginActivity,IndexPageActivity::class.java)
-        startActivity(intent)
+
+    private fun navigateToIndex() {
+        startActivity(Intent(this@LoginActivity, IndexPageActivity::class.java))
+        finish() // Finish LoginActivity so users can't go back to it
     }
 }
