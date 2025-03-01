@@ -5,10 +5,10 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="SplashScreenActivity">
+      <SelectionState runConfigName="checkLogin()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="checkLogin()">
+      <SelectionState runConfigName="checkRegistration()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
