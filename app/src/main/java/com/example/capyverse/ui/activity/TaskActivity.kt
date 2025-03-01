@@ -21,11 +21,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class TaskActivity : AppCompatActivity() {
-    private lateinit var database: DatabaseReference
+    lateinit var database: DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var taskList: MutableList<Task>
     private lateinit var adapter: TaskAdapter
-    private lateinit var auth: FirebaseAuth
+    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

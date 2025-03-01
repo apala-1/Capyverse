@@ -13,7 +13,7 @@ import com.example.capyverse.utils.LoadingUtils
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
+    lateinit var binding: ActivityLoginBinding
     private lateinit var loadingUtils: LoadingUtils
     private lateinit var firebaseAuth: FirebaseAuth
 
